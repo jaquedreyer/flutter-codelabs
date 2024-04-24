@@ -32,6 +32,19 @@ class MyAppState extends ChangeNotifier {
     current = WordPair.random();
     notifyListeners();
   }
+
+//add the business logic below
+  var favorites =
+      <WordPair>[]; //new property that initialized an empty list that can only contain word pairs
+
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
+      favorites.remove(current);
+    } else {
+      favorites.add(current);
+    }
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -46,7 +59,9 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BigCard(pair: pair),
-            SizedBox(height: 20), //add a bit more space between the two widgets; visual gaps
+            SizedBox(
+                height:
+                    20), //add a bit more space between the two widgets; visual gaps
             ElevatedButton(
               onPressed: () {
                 appState.getNext();
@@ -86,7 +101,7 @@ class BigCard extends StatelessWidget {
           pair.asLowerCase,
           style: style,
           semanticsLabel: "${pair.first} ${pair.second}",
-          ),
+        ),
       ),
     );
   }
