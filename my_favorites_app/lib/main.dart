@@ -46,6 +46,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BigCard(pair: pair),
+            SizedBox(height: 20), //add a bit more space between the two widgets; visual gaps
             ElevatedButton(
               onPressed: () {
                 appState.getNext();
