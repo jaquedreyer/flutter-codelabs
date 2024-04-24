@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
 
-  void getNext(){
+  void getNext() {
     current = WordPair.random();
     notifyListeners();
   }
@@ -38,22 +38,20 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var pair = appState.current; 
+    var pair = appState.current;
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('A random AWESOME idea:'),
             BigCard(pair: pair),
-        
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 appState.getNext();
               },
               child: Text('Next'),
-              ),
+            ),
           ],
         ),
       ),
@@ -72,7 +70,8 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context); //request the current app theme
-    final style = theme.textTheme.displayMedium!.copyWith( //textTheme
+    final style = theme.textTheme.displayMedium!.copyWith(
+      //textTheme
       color: theme.colorScheme.onPrimary,
       fontStyle: FontStyle.italic,
     );
