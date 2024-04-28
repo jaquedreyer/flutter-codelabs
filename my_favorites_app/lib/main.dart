@@ -48,6 +48,7 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatelessWidget {
+  // HomePage first widget (left)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +85,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+  // HomePage second widget (right)
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -102,9 +104,9 @@ class GeneratorPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BigCard(pair: pair),
-          SizedBox(height: 10),
+          SizedBox(height: 10), //add a bit more space between the two widgets; visual gaps
           Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min, //not to take all available horizontal space
             children: [
               ElevatedButton.icon(
                 onPressed: () {
@@ -113,7 +115,7 @@ class GeneratorPage extends StatelessWidget {
                 icon: Icon(icon),
                 label: Text('Like'),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10), //width (in the row) to add a bit more space between the two buttons
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
