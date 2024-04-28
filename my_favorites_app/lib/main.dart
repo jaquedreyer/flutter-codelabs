@@ -48,14 +48,17 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatelessWidget {
-  // HomePage first widget (left)
+  // HomePage first widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //scaffold stays here in this widget
       body: Row(
         children: [
           SafeArea(
+            //take only the necessary space
             child: NavigationRail(
+              //prevent buttons from being obscured
               extended: false,
               destinations: [
                 NavigationRailDestination(
@@ -74,6 +77,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Expanded(
+            //take all remaining space
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer,
               child: GeneratorPage(),
@@ -85,7 +89,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-  // HomePage second widget (right)
+// HomePage second widget
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -104,9 +108,12 @@ class GeneratorPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BigCard(pair: pair),
-          SizedBox(height: 10), //add a bit more space between the two widgets; visual gaps
+          SizedBox(
+              height:
+                  10), //add a bit more space between the two widgets; visual gaps
           Row(
-            mainAxisSize: MainAxisSize.min, //not to take all available horizontal space
+            mainAxisSize:
+                MainAxisSize.min, //not to take all available horizontal space
             children: [
               ElevatedButton.icon(
                 onPressed: () {
@@ -115,7 +122,9 @@ class GeneratorPage extends StatelessWidget {
                 icon: Icon(icon),
                 label: Text('Like'),
               ),
-              SizedBox(width: 10), //width (in the row) to add a bit more space between the two buttons
+              SizedBox(
+                  width:
+                      10), //width (in the row) to add a bit more space between the two buttons
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
