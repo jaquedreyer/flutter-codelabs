@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //take all remaining space
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer,
-              child: GeneratorPage(),
+              child: page,
             ),
           ),
         ],
