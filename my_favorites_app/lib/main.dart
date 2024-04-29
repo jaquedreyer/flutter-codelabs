@@ -58,6 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
   // HomePage first widget
   @override
   Widget build(BuildContext context) {
+    Widget page;
+    switch (selectedIndex) {
+      case 0:
+        page = GeneratorPage();
+        break;
+      case 1:
+        page =
+            Placeholder(); //placeholder is a widget that draw a crossed rectangle to mark a part of the UI that isnt finished
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
+    }
     return Scaffold(
       //scaffold stays here in this widget
       body: Row(
