@@ -46,7 +46,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeFavorite(WordPair pair){
+  void removeFavorite(WordPair pair) {
     favorites.remove(pair);
     notifyListeners();
   }
@@ -75,46 +75,75 @@ class _MyHomePageState extends State<MyHomePage> {
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          //scaffold stays here in this widget
-          body: Row(
-            children: [
-              SafeArea(
-                //take only the necessary space
-                child: NavigationRail(
-                  //prevent buttons from being obscured
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('Home'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                  },
-                ),
-              ),
-              Expanded(
-                //take all remaining space
-                child: Container(
+
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          // use a more mobile-friendly layout with Bottom Nav Bar on narrow screens
+          if (constraints.maxWidth < 450) {
+            return Column(
+              children: [
+                Expanded(
+                    child: Container(
                   color: Theme.of(context).colorScheme.primaryContainer,
                   child: page,
+                )),
+                SafeArea(
+                  child: BottomNavigationBar(
+                    items: [
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.home), label: 'Home'),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.favorite), label: 'Favorites'),
+                    ],
+                    currentIndex: selectedIndex,
+                    onTap: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
+                  ),
+                )
+              ],
+            );
+          } else {
+            return Row(
+              children: [
+                SafeArea(
+                  //take only the necessary space
+                  child: NavigationRail(
+                    //prevent buttons from being obscured
+                    extended: constraints.maxWidth >= 600,
+                    destinations: [
+                      NavigationRailDestination(
+                        icon: Icon(Icons.home),
+                        label: Text('Home'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.favorite),
+                        label: Text('Favorites'),
+                      ),
+                    ],
+                    selectedIndex: selectedIndex,
+                    onDestinationSelected: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }
+                Expanded(
+                  //take all remaining space
+                  child: Container(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    child: page,
+                  ),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -171,12 +200,12 @@ class GeneratorPage extends StatelessWidget {
 
 class FavoritesPage extends StatelessWidget {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     if (appState.favorites.isEmpty) {
-     return Center(
-      child: Text('No favorites yet.'),
+      return Center(
+        child: Text('No favorites yet.'),
       );
     }
 
@@ -187,17 +216,18 @@ class FavoritesPage extends StatelessWidget {
           child: Text('You have ${appState.favorites.length} favorites'),
         ),
         for (var pair in appState.favorites)
-        ListTile(
-          leading: Icon(Icons.favorite),
-          title: Text(pair.asLowerCase),
-          trailing: IconButton(onPressed: (){
-            appState.removeFavorite(pair);
-          },
-           icon: Icon(Icons.delete_outline, semanticLabel: 'Delete')),
-        )
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+            trailing: IconButton(
+                onPressed: () {
+                  appState.removeFavorite(pair);
+                },
+                icon: Icon(Icons.delete_outline, semanticLabel: 'Delete')),
+          )
       ],
     );
-}
+  }
 }
 
 class BigCard extends StatelessWidget {
