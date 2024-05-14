@@ -9,7 +9,7 @@ Repository to keep my code solutions from the [Flutter Codelabs](https://docs.fl
   
 
 ## Contributing
-Feel free to contribute to this repository. **I would love to review your pull request and learn with you**! 
+I welcome contributions and suggestions from the community! If you come across any issues, have ideas for improvements, or wish to contribute in any way, feel free to open an issue or submit a pull request.  **I would love to learn with you**! 
 
 > Made with love by Jaque Dreyer 🧡
 
