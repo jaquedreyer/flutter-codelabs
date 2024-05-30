@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       create: (context) => MyAppState(),
       child: MaterialApp(
         title: 'Namer App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
@@ -88,8 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Theme.of(context).colorScheme.primaryContainer,
                   child: page,
                 )),
-                SafeArea(
-                  child: BottomNavigationBar(
+                  BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
                           icon: Icon(Icons.home), label: 'Home'),
@@ -103,7 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     },
                   ),
-                )
               ],
             );
           } else {
