@@ -11,7 +11,9 @@ A Flutter application that generates cool-sounding word combinations and allows 
 * [Contributing](#contributing)
 * [License](#license)
 
-<Screenshots here>
+<p align="center">
+  <img src="screenshots/my_favorites_app.gif" width="220px" height="500"> <img src="screenshots/wide_screen.png"  width="330px" height="500"> <figcaption>The application is responsive to different screen sizes, employing a mobile-friendly layout with a BottomNavigationBar for narrow screens and a NavigationRail for wide screens</figcaption> 
+</p>
 
 ## Features
 
@@ -20,7 +22,6 @@ A Flutter application that generates cool-sounding word combinations and allows 
 - [ ] Favorite the word you like
 - [ ] Review favorited words on the favorite page
 - [ ] Remove a favorited word
-- [ ] The application is responsive to different screen sizes
 
 ## Installation
 
